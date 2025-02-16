@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box, Container, LinearProgress, Grid, Paper } from '@mui/material';
+import { Typography, Box, Container, LinearProgress, Grid, Paper, Divider } from '@mui/material';
 
 function Skills() {
   const skills = [
@@ -41,58 +41,91 @@ function Skills() {
   ];
 
   return (
-    <Box component="section" className="skills">
-      <Container maxWidth="lg">
-        <Typography variant="h4" component="h2" gutterBottom>
-          Technical Skills
-        </Typography>
-        <Grid container spacing={3}>
+    <Box component="section" className="skills" sx={{ height: '100%' }}>
+      <Container maxWidth="lg" sx={{ p: 0, height: '100%' }}>
+      <Box sx={{ 
+          p: 0, 
+          borderBottom: '1px solid #eee',
+          backgroundColor: '#fff'
+        }}>
+          <Typography 
+            variant="h4" 
+            component="h2" 
+            sx={{ 
+              fontWeight: 500,
+              color: '#2c3e50',
+              fontSize: '1.1rem'
+            }}
+          >
+            Technical Skills
+          </Typography>
+        </Box>
+        <Paper elevation={0} sx={{ 
+          p: 0, 
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
           {skills.map((skill, index) => (
-            <Grid item xs={12} key={index}>
-              <Paper 
-                elevation={2} 
-                sx={{ 
-                  p: 2,
-                  '&:hover': {
-                    boxShadow: 4,
-                    transform: 'scale(1.01)',
-                    transition: 'all 0.2s ease-in-out'
-                  }
-                }}
-              >
-                <Box sx={{ width: '100%' }}>
-                  <Box 
+            <React.Fragment key={index}>
+              <Box sx={{ 
+                flex: 1, // This will make each skill take equal height
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                p: 2, // Increased padding
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 0, 0, 0.01)'
+                }
+              }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: 1 // Increased margin
+                }}>
+                  <Typography 
+                    variant="body1" // Increased font size
                     sx={{ 
-                      display: 'flex', 
-                      justifyContent: 'space-between',
-                      mb: 1
+                      fontWeight: 500,
+                      color: '#333',
+                      fontSize: '1rem' // Explicit font size
                     }}
                   >
-                    <Typography variant="h6" component="h3">
-                      {skill.name}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                      {skill.level}%
-                    </Typography>
-                  </Box>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={skill.level}
-                    sx={{
-                      height: 10,
-                      borderRadius: 5,
-                      backgroundColor: 'rgba(0,0,0,0.1)',
-                      '& .MuiLinearProgress-bar': {
-                        backgroundColor: skill.color,
-                        borderRadius: 5
-                      }
+                    {skill.name}
+                  </Typography>
+                  <Typography 
+                    variant="body2" 
+                    sx={{ 
+                      color: 'text.secondary',
+                      minWidth: '40px',
+                      textAlign: 'right',
+                      fontSize: '0.9rem' // Increased font size
                     }}
-                  />
+                  >
+                    {skill.level}%
+                  </Typography>
                 </Box>
-              </Paper>
-            </Grid>
+                <LinearProgress 
+                  variant="determinate" 
+                  value={skill.level}
+                  sx={{
+                    height: 8, // Increased height
+                    borderRadius: 4,
+                    backgroundColor: 'rgba(0,0,0,0.05)',
+                    '& .MuiLinearProgress-bar': {
+                      backgroundColor: skill.color,
+                      borderRadius: 4
+                    }
+                  }}
+                />
+              </Box>
+              {index < skills.length - 1 && (
+                <Divider sx={{ my: 0 }} />
+              )}
+            </React.Fragment>
           ))}
-        </Grid>
+        </Paper>
       </Container>
     </Box>
   );
