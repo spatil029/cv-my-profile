@@ -16,7 +16,7 @@ function Projects() {
           description: 'Report generation application that has migrated from WebFocus to React.JS and Node.JS',
           teamSize: 4,
           role: 'Senior Software Developer',
-          technologies: ['Node.JS', 'React.JS', 'SQL Server']
+          technologies: ['Node.JS','Express', 'React.JS', 'SQL Server']
         },
         {
           name: 'HealthLink',
@@ -24,7 +24,7 @@ function Projects() {
           description: "Application designed to help you manage the child's treatment of achondroplasia on vosoritide.",
           teamSize: 5,
           role: 'Senior Software Developer',
-          technologies: ['MERN']
+          technologies: ['MERN','MongoDB','Express','React','Node.JS']
         },
         {
           name: 'CDS Online',

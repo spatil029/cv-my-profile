@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box, Avatar, Divider } from '@mui/material';
+import { Typography, Box, Avatar, Divider, IconButton, Tooltip } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import HomeIcon from '@mui/icons-material/Home';
@@ -8,6 +8,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import SchoolIcon from '@mui/icons-material/School';
 import BuildIcon from '@mui/icons-material/Build';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
+import DownloadIcon from '@mui/icons-material/Download';
 
 function Header() {
   const menuItems = [
@@ -18,6 +19,15 @@ function Header() {
     { text: 'Skills', path: '/skills', icon: <BuildIcon sx={{ fontSize: 20 }} /> },
     { text: 'Contact', path: '/contact', icon: <ContactMailIcon sx={{ fontSize: 20 }} /> },
   ];
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/Profile_Sahadev_Patil.pdf';
+    link.download = 'Profile_Sahadev_Patil.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <Box sx={{ 
@@ -66,7 +76,22 @@ function Header() {
           >
             Full Stack Developer
           </Typography>
+          <Tooltip title="Download CV">
+          <IconButton 
+            onClick={handleDownload}
+            sx={{ 
+              color: 'primary.main',
+              '&:hover': {
+                backgroundColor: 'rgba(25, 118, 210, 0.04)'
+              }
+            }}
+          >
+            <DownloadIcon />
+          </IconButton>
+        </Tooltip>
         </Box>
+
+        
       </Box>
 
       <Divider sx={{ mb: 2 }} />
