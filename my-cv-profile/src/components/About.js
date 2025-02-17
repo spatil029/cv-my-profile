@@ -1,7 +1,47 @@
 import React from 'react';
-import { Typography, Box, Container, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { Typography, Box, Container, List, ListItem, ListItemText, Divider, ListItemIcon } from '@mui/material';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import GroupsIcon from '@mui/icons-material/Groups';
+import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
+import AgileIcon from '@mui/icons-material/Speed';
+import CodeIcon from '@mui/icons-material/Code';
+import CloudIcon from '@mui/icons-material/Cloud';
 
 function About() {
+  const highlights = [
+    {
+      primary: "Extensive Project Experience",
+      secondary: "Successfully delivered multiple enterprise-level applications in Healthcare and Finance domains using cutting-edge technologies",
+      icon: <BusinessCenterIcon sx={{ color: '#1976d2' }} />
+    },
+    {
+      primary: "Technical Leadership",
+      secondary: "Led development teams in architecting and implementing scalable solutions, mentoring junior developers, and establishing best practices",
+      icon: <GroupsIcon sx={{ color: '#1976d2' }} />
+    },
+    {
+      primary: "Full Stack Expertise",
+      secondary: "Proficient in both front-end and back-end development with modern frameworks including .NET Core, React, Angular, and Node.js",
+      icon: <DeveloperModeIcon sx={{ color: '#1976d2' }} />
+    },
+    {
+      primary: "Agile Methodologies",
+      secondary: "Strong background in agile development practices, ensuring efficient project delivery and team collaboration",
+      icon: <AgileIcon sx={{ color: '#1976d2' }} />
+    }
+  ];
+
+  const interests = [
+    {
+      text: "Modern web technologies and cloud architecture",
+      icon: <CloudIcon sx={{ color: '#1976d2' }} />
+    },
+    {
+      text: "Building scalable applications and technical decision-making",
+      icon: <CodeIcon sx={{ color: '#1976d2' }} />
+    }
+  ];
+
   return (
     <Box component="section" className="about">
       <Container maxWidth="md">
@@ -18,30 +58,25 @@ function About() {
               Professional Highlights
             </Typography>
             <List>
-              <ListItem>
-                <ListItemText 
-                  primary="Extensive Project Experience" 
-                  secondary="Successfully delivered multiple enterprise-level applications in Healthcare and Finance domains using cutting-edge technologies"
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText 
-                  primary="Technical Leadership" 
-                  secondary="Led development teams in architecting and implementing scalable solutions, mentoring junior developers, and establishing best practices"
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText 
-                  primary="Full Stack Expertise" 
-                  secondary="Proficient in both front-end and back-end development with modern frameworks including .NET Core, React, Angular, and Node.js"
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText 
-                  primary="Agile Methodologies" 
-                  secondary="Strong background in agile development practices, ensuring efficient project delivery and team collaboration"
-                />
-              </ListItem>
+              {highlights.map((item, index) => (
+                <ListItem key={index} sx={{ py: 1.5 }}>
+                  <ListItemIcon sx={{ minWidth: 40 }}>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary={
+                      <Typography variant="body1" sx={{ fontWeight: 500, color: '#2c3e50' }}>
+                        {item.primary}
+                      </Typography>
+                    }
+                    secondary={
+                      <Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5 }}>
+                        {item.secondary}
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              ))}
             </List>
           </Box>
 
@@ -51,10 +86,20 @@ function About() {
             <Typography variant="h5" component="h3" gutterBottom>
               Professional Interests
             </Typography>
-            <Typography variant="body1">
-              Passionate about modern web technologies, cloud architecture, and building scalable applications. 
-              Keen interest in mentoring teams and contributing to technical decision-making processes.
-            </Typography>
+            <List>
+              {interests.map((item, index) => (
+                <ListItem key={index} sx={{ py: 1 }}>
+                  <ListItemIcon sx={{ minWidth: 40 }}>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+                      {item.text}
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              ))}
+            </List>
           </Box>
         </Box>
       </Container>
