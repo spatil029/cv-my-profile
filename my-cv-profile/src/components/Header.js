@@ -23,12 +23,24 @@ function Header({ onMenuItemClick }) {
   ];
 
   const handleDownload = () => {
+    // Define the PDF URL
+    const pdfUrl = process.env.PUBLIC_URL + '/Profile_Sahadev_Patil.pdf';
+    
+    // Create a temporary link
     const link = document.createElement('a');
-    link.href = '/Profile_Sahadev_Patil.pdf';
-    link.download = 'Profile_Sahadev_Patil.pdf';
+    link.href = pdfUrl;
+    link.setAttribute('download', 'Profile_Sahadev_Patil.pdf');
+    link.setAttribute('target', '_blank');
+    link.style.display = 'none';
+    
+    // Add to document, click, and remove
     document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
+    
+    // Small delay before removing the link
+    setTimeout(() => {
+      document.body.removeChild(link);
+    }, 100);
   };
 
   const handleMenuClick = () => {
@@ -49,21 +61,20 @@ function Header({ onMenuItemClick }) {
         display: 'flex',
         alignItems: 'center',
         gap: 2,
-        mb: 3
+        mb: 3,
+        flexShrink: 0
       }}>
         <Avatar 
-           src="/favicon.ico"
+          src="/favicon.ico"
           sx={{ 
             width: 50,
             height: 50,
-            bgcolor: 'primary.main',
+            bgcolor: 'white',
             boxShadow: 1
           }}
-        >
-          {/*<AccountBoxIcon sx={{ fontSize: 30 }} />*/}
-        </Avatar>
+        />
         
-        <Box>
+        <Box sx={{ flex: 1 }}>
           <Typography 
             variant="subtitle1" 
             sx={{ 
@@ -84,22 +95,29 @@ function Header({ onMenuItemClick }) {
           >
             Full Stack Developer
           </Typography>
-          <Tooltip title="Download CV">
-          <IconButton 
-            onClick={handleDownload}
-            sx={{ 
-              color: 'primary.main',
-              '&:hover': {
-                backgroundColor: 'rgba(25, 118, 210, 0.04)'
-              }
-            }}
-          >
-            <DownloadIcon />
-          </IconButton>
-        </Tooltip>
         </Box>
 
-        
+        <Box 
+          onClick={handleDownload}
+          sx={{ 
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            padding: '8px',
+            borderRadius: '4px',
+            color: 'primary.main',
+            transition: 'all 0.2s ease',
+            '&:hover': { 
+              backgroundColor: 'rgba(25, 118, 210, 0.04)',
+              transform: 'scale(1.05)'
+            },
+            '&:active': {
+              transform: 'scale(0.95)'
+            }
+          }}
+        >
+          <DownloadIcon />
+        </Box>
       </Box>
 
       <Divider sx={{ mb: 2 }} />
