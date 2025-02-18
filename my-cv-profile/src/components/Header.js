@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Box, Avatar, Divider, IconButton, Tooltip } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import HomeIcon from '@mui/icons-material/Home';
 import WorkIcon from '@mui/icons-material/Work';
@@ -10,7 +10,9 @@ import BuildIcon from '@mui/icons-material/Build';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import DownloadIcon from '@mui/icons-material/Download';
 
-function Header() {
+function Header({ onMenuItemClick }) {
+  const location = useLocation();
+  
   const menuItems = [
     { text: 'About', path: '/', icon: <HomeIcon sx={{ fontSize: 20 }} /> },
     { text: 'Experience', path: '/experience', icon: <WorkIcon sx={{ fontSize: 20 }} /> },
@@ -27,6 +29,12 @@ function Header() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleMenuClick = () => {
+    if (onMenuItemClick) {
+      onMenuItemClick();
+    }
   };
 
   return (
@@ -106,6 +114,7 @@ function Header() {
               isActive ? 'nav-link active' : 'nav-link'
             }
             style={{ textDecoration: 'none' }}
+            onClick={handleMenuClick}
           >
             <Box sx={{ 
               display: 'flex',
@@ -120,7 +129,7 @@ function Header() {
                 backgroundColor: 'rgba(25, 118, 210, 0.04)',
                 color: 'primary.main'
               },
-              ...(window.location.pathname === item.path && {
+              ...(location.pathname === item.path && {
                 backgroundColor: 'rgba(25, 118, 210, 0.08)',
                 color: 'primary.main',
                 fontWeight: 500
@@ -153,7 +162,7 @@ function Header() {
           fontSize: '0.75rem'
         }}
       >
-        © 2024 Portfolio
+        © 2025 Sahadev Patil
       </Typography>
     </Box>
   );
