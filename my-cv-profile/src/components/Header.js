@@ -1,5 +1,5 @@
-import React from 'react';
-import { Typography, Box, Avatar, Divider, IconButton, Tooltip } from '@mui/material';
+import React, { useState } from 'react';
+import { Typography, Box, Avatar, Divider, IconButton, Tooltip, Snackbar, Alert } from '@mui/material';
 import { NavLink, useLocation } from 'react-router-dom';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import HomeIcon from '@mui/icons-material/Home';
@@ -12,6 +12,9 @@ import DownloadIcon from '@mui/icons-material/Download';
 
 function Header({ onMenuItemClick }) {
   const location = useLocation();
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('info');
   
   const menuItems = [
     { text: 'About', path: '/', icon: <HomeIcon sx={{ fontSize: 20 }} /> },
@@ -22,26 +25,51 @@ function Header({ onMenuItemClick }) {
     { text: 'Contact', path: '/contact', icon: <ContactMailIcon sx={{ fontSize: 20 }} /> },
   ];
 
-  const handleDownload = () => {
-    // Get the base URL of your application
-    const baseUrl = window.location.origin;
-    
-    // Create the full URL to your PDF
-    const pdfUrl = `${baseUrl}/Profile_Sahadev_Patil.pdf`;
-    
-    // Create a temporary link element
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.setAttribute('download', 'Profile_Sahadev_Patil.pdf');
-    link.setAttribute('target', '_blank');
-    link.rel = 'noopener noreferrer';
-    
-    // Trigger download
-    document.body.appendChild(link);
-    link.click();
-    
-    // Cleanup
-    document.body.removeChild(link);
+  const handleDownload = async () => {
+    try {
+      // Direct GitHub raw content URL
+      const pdfUrl = 'https://raw.githubusercontent.com/spatil029/cv-my-profile/main/my-cv-profile/public/Profile_Sahadev_Patil.pdf';
+
+      const response = await fetch(pdfUrl);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch PDF');
+      }
+
+      const pdfBlob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(pdfBlob);
+      
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = 'Profile_Sahadev_Patil.pdf';
+      
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+
+      setSnackbarSeverity('success');
+      setSnackbarMessage('Download started successfully!');
+      setOpenSnackbar(true);
+    } catch (error) {
+      console.error('Download error:', error);
+      
+      // Fallback: Open in new tab
+      window.open('https://raw.githubusercontent.com/spatil029/cv-my-profile/main/my-cv-profile/public/Profile_Sahadev_Patil.pdf', '_blank');
+      
+      setSnackbarSeverity('info');
+      setSnackbarMessage('Opening PDF in new tab...');
+      setOpenSnackbar(true);
+    }
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
   };
 
   const handleMenuClick = () => {
@@ -98,7 +126,7 @@ function Header({ onMenuItemClick }) {
           </Typography>
         </Box>
 
-        {/*<Box 
+        <Box 
           onClick={handleDownload}
           sx={{ 
             cursor: 'pointer',
@@ -118,7 +146,7 @@ function Header({ onMenuItemClick }) {
           }}
         >
           <DownloadIcon />
-        </Box>*/}
+        </Box>
       </Box>
 
       <Divider sx={{ mb: 2 }} />
@@ -183,6 +211,22 @@ function Header({ onMenuItemClick }) {
       >
         © 2025 Sahadev Patil
       </Typography>
+
+      {/* Snackbar for feedback */}
+      <Snackbar 
+        open={openSnackbar} 
+        autoHideDuration={6000} 
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={handleCloseSnackbar} 
+          severity={snackbarSeverity} 
+          sx={{ width: '100%' }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
