@@ -98,7 +98,7 @@ function Header({ onMenuItemClick }) {
           </Typography>
         </Box>
 
-        <Box 
+        {/*<Box 
           onClick={handleDownload}
           sx={{ 
             cursor: 'pointer',
@@ -118,7 +118,7 @@ function Header({ onMenuItemClick }) {
           }}
         >
           <DownloadIcon />
-        </Box>
+        </Box>*/}
       </Box>
 
       <Divider sx={{ mb: 2 }} />
