@@ -6,6 +6,7 @@ import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
 import AgileIcon from '@mui/icons-material/Speed';
 import CodeIcon from '@mui/icons-material/Code';
 import CloudIcon from '@mui/icons-material/Cloud';
+import ChatBot from './ChatBot';
 
 function About() {
   const highlights = [
@@ -103,6 +104,7 @@ function About() {
           </Box>
         </Box>
       </Container>
+      <ChatBot />
     </Box>
   );
 }

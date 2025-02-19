@@ -22,25 +22,35 @@ function Header({ onMenuItemClick }) {
     { text: 'Contact', path: '/contact', icon: <ContactMailIcon sx={{ fontSize: 20 }} /> },
   ];
 
-  const handleDownload = () => {
-    // Define the PDF URL
-    const pdfUrl = process.env.PUBLIC_URL + '/Profile_Sahadev_Patil.pdf';
-    
-    // Create a temporary link
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.setAttribute('download', 'Profile_Sahadev_Patil.pdf');
-    link.setAttribute('target', '_blank');
-    link.style.display = 'none';
-    
-    // Add to document, click, and remove
-    document.body.appendChild(link);
-    link.click();
-    
-    // Small delay before removing the link
-    setTimeout(() => {
+  const handleDownload = async () => {
+    try {
+      // Direct URL to your PDF on the server
+      const pdfUrl = 'https://my-cv-profile-sahadevpatils-projects.vercel.app/Profile_Sahadev_Patil.pdf';
+      
+      // Fetch the PDF file
+      const response = await fetch(pdfUrl);
+      const blob = await response.blob();
+      
+      // Create a blob URL
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = 'Profile_Sahadev_Patil.pdf';
+      
+      // Append to body, click, and cleanup
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
       document.body.removeChild(link);
-    }, 100);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error('Error downloading PDF:', error);
+      // Fallback: Open PDF in new tab
+      window.open('https://my-cv-profile-sahadevpatils-projects.vercel.app/Profile_Sahadev_Patil.pdf', '_blank');
+    }
   };
 
   const handleMenuClick = () => {
