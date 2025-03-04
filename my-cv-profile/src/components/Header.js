@@ -187,7 +187,7 @@ function Header({ onMenuItemClick }) {
                 variant="body2" 
                 sx={{ 
                   fontSize: '0.875rem',
-                  fontWeight: 400,
+                  fontWeight: 'bold',
                   letterSpacing: '0.2px'
                 }}
               >

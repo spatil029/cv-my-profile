@@ -6,7 +6,6 @@ import WorkIcon from '@mui/icons-material/Work';
 import GroupsIcon from '@mui/icons-material/Groups';
 import CodeIcon from '@mui/icons-material/Code';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 function Experience() {
   const experiences = [
@@ -43,48 +42,32 @@ function Experience() {
   ];
 
   return (
-    <Box component="section" className="experience" sx={{ height: '100%' }}>
-      <Container maxWidth="lg" sx={{ p: 0, height: '100%' }}>
-        <Box sx={{ 
-          py: 1.5,
-          px: 2,
-          borderBottom: '1px solid #eee',
-          backgroundColor: '#fff'
-        }}>
-          <Typography 
-            variant="h6" 
-            component="h1" 
-            sx={{ 
-              fontWeight: 500,
-              color: '#2c3e50',
-              fontSize: '1.1rem'
-            }}
-          >
-            Work Experience
-          </Typography>
-        </Box>
-
+    <Box component="section" className="experience">
+      <Container maxWidth="lg">
+        <Typography variant="h4" component="h2" gutterBottom>
+          Work Experience
+        </Typography>
         <Paper 
-          elevation={0} 
+          elevation={3} 
           sx={{ 
-            p: 2,
+            p: 3, 
+            mb: 4, 
             backgroundColor: '#f8f9fa',
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
-            borderRadius: 0
+            gap: 2
           }}
         >
           <WorkHistoryIcon 
             color="primary" 
-            sx={{ fontSize: 32 }} 
+            sx={{ fontSize: 40 }} 
           />
           <Box>
-            <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="h5" gutterBottom>
               Total Professional Experience
             </Typography>
             <Typography 
-              variant="h5" 
+              variant="h4" 
               color="primary" 
               sx={{ fontWeight: 'bold' }}
             >
@@ -92,72 +75,30 @@ function Experience() {
             </Typography>
           </Box>
         </Paper>
-
-        <Box sx={{ position: 'relative' }}>
+        <Grid container spacing={3}>
           {experiences.map((exp, index) => (
-            <Box key={index} sx={{ position: 'relative' }}>
-              <Card 
-                elevation={0} 
-                sx={{ 
-                  borderRadius: 0,
-                  borderBottom: '1px solid #eee'
-                }}
-              >
-                <CardContent sx={{ p: 2 }}>
+            <Grid item xs={12} key={index}>
+              <Card elevation={2}>
+                <CardContent>
                   <Box display="flex" alignItems="flex-start" gap={2}>
-                    <BusinessIcon color="primary" sx={{ fontSize: 32 }} />
+                    <BusinessIcon color="primary" sx={{ fontSize: 40 }} />
                     <Box flex={1}>
-                      <Typography variant="h6" component="h3" sx={{ fontSize: '1rem', fontWeight: 500 }}>
+                      <Typography variant="h6" component="h3" gutterBottom>
                         {exp.position}
                       </Typography>
-                      <Typography variant="subtitle1" color="primary" sx={{ fontSize: '0.9rem' }}>
+                      <Typography variant="subtitle1" color="primary" gutterBottom>
                         {exp.company}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem' }}>
+                      <Typography variant="body2" color="text.secondary">
                         {exp.duration} • {exp.years}
                       </Typography>
                     </Box>
                   </Box>
                 </CardContent>
               </Card>
-              
-              {index < experiences.length - 1 && (
-                <Box 
-                  sx={{ 
-                    position: 'absolute',
-                    left: '27px', // Align with the company icon
-                    bottom: '-18px', // Position between cards
-                    zIndex: 1,
-                    height: '36px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    color: '#1976d2'
-                  }}
-                >
-                  <Box 
-                    sx={{ 
-                      width: '2px',
-                      height: '100%',
-                      backgroundColor: '#1976d2',
-                      opacity: 0.3
-                    }} 
-                  />
-                  <ArrowUpwardIcon 
-                    sx={{ 
-                      fontSize: 20,
-                      position: 'absolute',
-                      bottom: 0,
-                      transform: 'translateY(50%)',
-                      backgroundColor: 'white',
-                      borderRadius: '50%'
-                    }} 
-                  />
-                </Box>
-              )}
-            </Box>
+            </Grid>
           ))}
-        </Box>
+        </Grid>
       </Container>
     </Box>
   );
@@ -269,7 +210,7 @@ function Projects() {
   return (
     <Box component="section" className="projects">
       <Container maxWidth="lg">
-        <Typography variant="h4" component="h2" gutterBottom>
+        <Typography variant="h4" component="h2" gutterBottom sx={{fontWeight: 'bold'}}>
           Projects
         </Typography>
         <Grid container spacing={3}>

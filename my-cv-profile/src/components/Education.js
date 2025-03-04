@@ -21,7 +21,7 @@ function Education() {
   return (
     <Box component="section" className="education">
       <Container maxWidth="lg">
-        <Typography variant="h4" component="h2" gutterBottom>
+        <Typography variant="h4" component="h2" gutterBottom  sx={{fontWeight: 'bold'}}>
           Education
         </Typography>
         <Grid container spacing={3}>

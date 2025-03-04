@@ -46,7 +46,7 @@ function About() {
   return (
     <Box component="section" className="about">
       <Container maxWidth="md">
-        <Typography variant="h4" component="h2" gutterBottom>
+        <Typography variant="h4" component="h2" gutterBottom  sx={{fontWeight: 'bold'}}>
           About Me
         </Typography>
         <Box className="about-content">
@@ -84,7 +84,7 @@ function About() {
           <Divider sx={{ my: 3 }} />
           
           <Box className="interests">
-            <Typography variant="h5" component="h3" gutterBottom>
+            <Typography variant="h5" component="h3" gutterBottom  >
               Professional Interests
             </Typography>
             <List>
@@ -104,7 +104,6 @@ function About() {
           </Box>
         </Box>
       </Container>
-      <ChatBot />
     </Box>
   );
 }

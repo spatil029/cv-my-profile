@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Typography, Box, Container, Card, CardContent, Grid, Chip, Divider } from '@mui/material';
 import WorkIcon from '@mui/icons-material/Work';
 import GroupsIcon from '@mui/icons-material/Groups';
 import CodeIcon from '@mui/icons-material/Code';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import './Projects.css'; // Import the CSS for ripple effect
 
 function Projects() {
+  const audioRef = useRef(null);
+
   const projects = [
     {
       company: 'IQVIA',
@@ -16,7 +19,8 @@ function Projects() {
           description: 'Report generation application that has migrated from WebFocus to React.JS and Node.JS',
           teamSize: 4,
           role: 'Senior Software Developer',
-          technologies: ['Node.JS','Express', 'React.JS', 'SQL Server']
+          technologies: ['Node.JS', 'Express', 'React.JS', 'SQL Server'],
+          audio: 'path/to/your/audio/file.mp3'
         },
         {
           name: 'HealthLink',
@@ -72,7 +76,6 @@ function Projects() {
       projects: [
     {
       name: 'Enterprise Healthcare System',
-      //company: 'Winprotech',
       duration: 'Aug-2016 to Sep-2017',
       description: 'Healthcare Insurance system for USA state government.',
       responsibilities: [
@@ -91,7 +94,6 @@ function Projects() {
       projects: [
     {
       name: 'Human Resource Management System (HRMS)',
-      //company: 'TCS',
       duration: 'April-2015 to Aug-2016',
       description: 'Payroll Management for Karnataka E-Governance contains the complete process of the HR Department. Compute the government servants\' salaries and generate pay slips.',
       responsibilities: [
@@ -108,8 +110,11 @@ function Projects() {
     // ... Add other companies and their projects
   ];
 
+  
+
   return (
     <Box sx={{ height: '100%', m: 0, p: 0 }}>
+      <audio ref={audioRef} />
       <Box sx={{ 
         py: 1.5,
         px: 2,
@@ -120,7 +125,7 @@ function Projects() {
           variant="h6" 
           component="h1" 
           sx={{ 
-            fontWeight: 500,
+            fontWeight: 'bold',
             color: '#2c3e50',
             fontSize: '1.1rem'
           }}
@@ -153,13 +158,17 @@ function Projects() {
                     <Typography variant="body1" sx={{ fontWeight: 500 }}>
                       {project.name}
                     </Typography>
-                    <Chip 
-                      size="small"
-                      icon={<AccessTimeIcon sx={{ fontSize: '0.9rem' }} />}
-                      label={project.duration}
-                      variant="outlined"
-                      sx={{ ml: 1 }}
-                    />
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Chip 
+                        size="small"
+                        icon={<AccessTimeIcon sx={{ fontSize: '0.9rem' }} />}
+                        label={project.duration}
+                        variant="outlined"
+                        sx={{ ml: 1 }}
+                        className="ripple-chip"
+                      />
+                      
+                    </Box>
                   </Box>
 
                   <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
@@ -190,12 +199,12 @@ function Projects() {
                           ml: 1,
                           backgroundColor: 'transparent',
                           color: '#1976d2',
-                          //border: 'none',
                           '& .MuiChip-label': { 
                             fontSize: '0.75rem',
                             fontWeight: 500
                           }
                         }}
+                        className="ripple-chip"
                       />
                     ))}
                   </Box>
