@@ -149,6 +149,12 @@ function App() {
               overflowY: 'auto',
               '@media (max-width: 768px)': {
                 marginTop: '60px'
+              },
+              // Add these styles for Firefox compatibility
+              scrollbarWidth: 'thin',
+              scrollbarColor: '#1976d2 transparent',
+              '&::-webkit-scrollbar-track': {
+                margin: '80px 0'
               }
             }}
           >

@@ -347,3 +347,22 @@ body {
 .skills .MuiDivider-root {
   margin: 0 !important;
 }
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  margin: 80px 0;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1976d2;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1565c0;
+}
