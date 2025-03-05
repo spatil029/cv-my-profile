@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && javascript-obfuscator build/static/js --output build/static/js --config obfuscator-config.json",
+    "build": "CI=false && node ./node_modules/react-scripts/scripts/build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -44,26 +44,5 @@
   "engines": {
     "node": "22.x",
     "npm": "10.x"
-  },
-  "devDependencies": {
-    "javascript-obfuscator": "^4.1.1"
-  },
-  "obfuscatorConfig": {
-    "compact": true,
-    "controlFlowFlattening": true,
-    "deadCodeInjection": true,
-    "debugProtection": true,
-    "debugProtectionInterval": true,
-    "disableConsoleOutput": true,
-    "identifierNamesGenerator": "hexadecimal",
-    "log": false,
-    "renameGlobals": false,
-    "selfDefending": true,
-    "sourceMap": false,
-    "stringArray": true,
-    "stringArrayEncoding": ["rc4"],
-    "stringArrayThreshold": 0.75,
-    "transformObjectKeys": true,
-    "unicodeEscapeSequence": false
   }
 }
