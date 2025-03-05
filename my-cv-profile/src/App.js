@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Box, IconButton, ThemeProvider } from '@mui/material';
@@ -44,6 +44,16 @@ const seoData = {
   }
 };
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when the route changes
+  }, [pathname]);
+
+  return null; // This component does not render anything
+}
+
 function SEOWrapper() {
   const location = useLocation();
   const currentSEO = seoData[location.pathname] || seoData['/'];
@@ -54,6 +64,25 @@ function SEOWrapper() {
       <meta name="description" content={currentSEO.description} />
       <meta name="keywords" content={currentSEO.keywords} />
       <link rel="canonical" href={`https://sahadevpatils-projects.vercel.app${location.pathname}`} />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Sahadev Patil",
+          "jobTitle": "Full Stack Developer",
+          "url": "https://sahadevpatils-projects.vercel.app",
+          "sameAs": [
+            "https://www.linkedin.com/in/sahadev-patil/",
+            "https://github.com/spatil029"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bangalore",
+            "addressRegion": "Karnataka",
+            "addressCountry": "India"
+          }
+        })}
+      </script>
     </Helmet>
   );
 }
@@ -74,6 +103,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <ScrollToTop />
         <SEOWrapper />
         <Box className="app-container">
           {/* Mobile Menu Button */}
