@@ -51,7 +51,7 @@ function About() {
         </Typography>
         <Box className="about-content">
           <Typography variant="body1" paragraph>
-            Passionate, driven .NET full stack developer with 9+ years of experience. I always enjoy the phases of engineering and development of a web app. The spirit of growth always inspires me to satiate my passion for learning and sharing knowledge.
+            Passionate, driven .NET full stack developer with 10+ years of experience. I always enjoy the phases of engineering and development of a web app. The spirit of growth always inspires me to satiate my passion for learning and sharing knowledge.
           </Typography>
           
           <Box className="highlights" mt={4}>
