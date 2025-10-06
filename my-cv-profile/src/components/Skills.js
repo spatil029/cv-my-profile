@@ -19,6 +19,7 @@ function Skills() {
     { name: 'Web API', level: 88, color: '#4caf50', icon: <ApiIcon sx={{ color: '#4caf50', fontSize: '1.2rem' }} /> },
     { name: '.Net Core/NodeJS', level: 82, color: '#9c27b0', icon: <IntegrationInstructionsIcon sx={{ color: '#9c27b0', fontSize: '1.2rem' }} /> },
     { name: 'Unit Testing', level: 75, color: '#ff5722', icon: <BugReportIcon sx={{ color: '#ff5722', fontSize: '1.2rem' }} /> }
+     { name: 'TypeScript', level: 75, color: '#ff9800', icon: <BugReportIcon sx={{ color: '#ff5722', fontSize: '1.2rem' }} /> }
   ];
 
   const [skills, setSkills] = useState(skillsData.map(skill => ({ ...skill, animatedLevel: 0 })));
