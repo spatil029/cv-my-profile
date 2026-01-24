@@ -1,0 +1,368 @@
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  padding: 40px 0;
+  background-color: #f5f5f5;
+}
+
+section {
+  margin: 10px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.experience-item,
+.education-item {
+  margin-bottom: 20px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.skill-item {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.contact-info {
+  text-align: center;
+}
+
+.social-links {
+  margin-top: 20px;
+}
+
+.social-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #0066cc;
+} 
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #666;
+  display: block;
+  margin-bottom: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #1976d2;
+  background-color: rgba(25, 118, 210, 0.04);
+}
+
+.nav-link.active {
+  color: #1976d2;
+  background-color: rgba(25, 118, 210, 0.08);
+}
+
+.nav-link.active svg {
+  color: #1976d2;
+}
+
+.main-content {
+  width: 80%;
+  margin-left: 20%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.highlights {
+  margin: 20px 0;
+}
+
+.highlights ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.highlights li {
+  margin: 10px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.highlights li:before {
+  content: "•";
+  color: #0066cc;
+  position: absolute;
+  left: 0;
+}
+
+.interests {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 10px;
+  }
+
+  .header {
+    padding: 20px 0;
+  }
+
+  section {
+    margin: 20px 0;
+    padding: 15px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+  }
+
+  .navigation {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+  }
+
+  .experience-item,
+  .education-item {
+    margin-bottom: 15px;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 601px) and (max-width: 960px) {
+  .app {
+    padding: 15px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+}
+
+/* Additional responsive adjustments */
+.about-content {
+  padding: 0 15px;
+}
+
+.highlights li {
+  padding-left: 15px;
+}
+
+/* MUI overrides and custom styles */
+.MuiDrawer-paper {
+  min-width: 240px;
+}
+
+.MuiListItem-root.nav-link {
+  color: #333;
+  padding: 12px 20px;
+}
+
+.MuiListItem-root.nav-link.active {
+  background-color: #0066cc;
+  color: white;
+}
+
+.MuiListItem-root.nav-link:hover {
+  background-color: #f0f0f0;
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8fafc;
+}
+
+/* Layout container */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background-color: #fff;
+  border-right: 1px solid #e2e8f0;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  margin-left: 280px;
+  min-height: 100vh;
+  background-color: #fff;
+  transition: margin-left 0.3s ease;
+}
+
+/* Mobile menu button */
+.mobile-menu-button {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding-top: 60px; /* Space for mobile menu button */
+  }
+
+  .mobile-menu-button {
+    display: block;
+  }
+
+  /* Overlay when menu is open */
+  .menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+  }
+
+  .menu-overlay.open {
+    display: block;
+  }
+
+  /* Adjust content padding */
+  .content-area {
+    padding: 0;
+  }
+
+  /* Adjust typography for mobile */
+  .MuiTypography-h4 {
+    font-size: 1.5rem !important;
+  }
+
+  .MuiTypography-h5 {
+    font-size: 1.25rem !important;
+  }
+
+  .MuiTypography-h6 {
+    font-size: 1.1rem !important;
+  }
+
+  /* Adjust card spacing */
+  .MuiCard-root {
+    margin: 0.5rem 0;
+  }
+
+  /* Adjust grid spacing */
+  .MuiGrid-container {
+    padding: 0.5rem !important;
+  }
+}
+
+/* Additional professional touches */
+.MuiChip-root {
+  height: 24px !important;
+}
+
+.MuiButton-root {
+  text-transform: none !important;
+}
+
+.MuiAvatar-root {
+  background-color: #f5f5f5 !important;
+}
+
+/* Spacing utilities */
+.mb-1 { margin-bottom: 0.25rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+.mb-3 { margin-bottom: 0.75rem !important; }
+.mb-4 { margin-bottom: 1rem !important; }
+
+/* Skills section specific styles */
+.skills .MuiContainer-root {
+  padding: 0 !important;
+}
+
+.skills .MuiPaper-root {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skills .MuiBox-root:hover {
+  background-color: rgba(0, 0, 0, 0.01);
+}
+
+.skills .MuiDivider-root {
+  margin: 0 !important;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  margin: 80px 0;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1976d2;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1565c0;
+}

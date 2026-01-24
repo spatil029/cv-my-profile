@@ -1,1 +1,47 @@
- 
+/* Update existing styles */
+.nav-link {
+  text-decoration: none;
+  color: #666;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #1976d2;
+}
+
+.nav-link.active {
+  color: #1976d2;
+}
+
+.nav-link.active svg {
+  color: #1976d2;
+}
+
+.sidebar {
+  width: 240px; /* Fixed width instead of percentage */
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.main-content {
+  margin-left: 240px; /* Match sidebar width */
+  flex: 1;
+  padding: 1rem;
+  background-color: #f5f5f5;
+}
+
+.content-area {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  min-height: calc(100vh - 2rem);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+} 
