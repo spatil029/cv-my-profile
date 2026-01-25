@@ -7,39 +7,195 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import CodeIcon from '@mui/icons-material/Code';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
+// Utility function to parse month name to number
+const parseMonth = (monthStr) => {
+  const months = {
+    'jan': 0, 'january': 0, 'feb': 1, 'february': 1, 'mar': 2, 'march': 2,
+    'apr': 3, 'april': 3, 'may': 4, 'jun': 5, 'june': 5,
+    'jul': 6, 'july': 6, 'aug': 7, 'august': 7, 'sep': 8, 'september': 8,
+    'oct': 9, 'october': 9, 'nov': 10, 'november': 10, 'dec': 11, 'december': 11
+  };
+  return months[monthStr.toLowerCase()] ?? null;
+};
+
+// Utility function to calculate years and months from duration string
+const calculateDuration = (durationStr) => {
+  const isPresent = durationStr.toLowerCase().includes('present') || durationStr.toLowerCase().includes('currently');
+  const parts = durationStr.split(/[-–—]/).map(s => s.trim());
+  
+  if (parts.length < 2 && !isPresent) {
+    return { years: 0, months: 0, display: 'N/A' };
+  }
+
+  let startDate, endDate;
+  
+  if (isPresent) {
+    // Parse start date
+    const startMatch = durationStr.match(/(\w+)\s+(\d{4})/i);
+    if (startMatch) {
+      const month = parseMonth(startMatch[1]);
+      const year = parseInt(startMatch[2]);
+      startDate = new Date(year, month, 1);
+    } else {
+      return { years: 0, months: 0, display: 'N/A' };
+    }
+    endDate = new Date(); // Current date
+  } else {
+    // Parse both dates
+    const startMatch = parts[0].match(/(\w+)\s+(\d{4})/i);
+    const endMatch = parts[1].match(/(\w+)\s+(\d{4})/i);
+    
+    if (startMatch && endMatch) {
+      const startMonth = parseMonth(startMatch[1]);
+      const startYear = parseInt(startMatch[2]);
+      const endMonth = parseMonth(endMatch[1]);
+      const endYear = parseInt(endMatch[2]);
+      
+      startDate = new Date(startYear, startMonth, 1);
+      endDate = new Date(endYear, endMonth, 1);
+    } else {
+      return { years: 0, months: 0, display: 'N/A' };
+    }
+  }
+
+  // Calculate difference
+  const years = endDate.getFullYear() - startDate.getFullYear();
+  const months = endDate.getMonth() - startDate.getMonth();
+  
+  let totalMonths = years * 12 + months;
+  if (totalMonths < 0) totalMonths = 0;
+  
+  const calculatedYears = Math.floor(totalMonths / 12);
+  const calculatedMonths = totalMonths % 12;
+  
+  // Format display string
+  let display = '';
+  if (calculatedYears > 0) {
+    display = calculatedYears === 1 ? '1 year' : `${calculatedYears} years`;
+    if (calculatedMonths > 0) {
+      display += ` ${calculatedMonths} month${calculatedMonths > 1 ? 's' : ''}`;
+    }
+  } else if (calculatedMonths > 0) {
+    display = `${calculatedMonths} month${calculatedMonths > 1 ? 's' : ''}`;
+  } else {
+    display = 'Less than a month';
+  }
+  
+  return {
+    years: calculatedYears + (calculatedMonths / 12),
+    months: totalMonths,
+    display: display
+  };
+};
+
+// Utility function to calculate project duration from duration string (for Projects component)
+const calculateProjectDuration = (durationStr) => {
+  const isPresent = durationStr.toLowerCase().includes('present') || 
+                    durationStr.toLowerCase().includes('currently') ||
+                    durationStr.toLowerCase().includes('working');
+  
+  // Handle "Currently working from" format
+  if (isPresent) {
+    const match = durationStr.match(/(\w+)-(\d{4})/i) || durationStr.match(/(\w+)\s+(\d{4})/i);
+    if (match) {
+      const month = parseMonth(match[1]);
+      const year = parseInt(match[2]);
+      const startDate = new Date(year, month, 1);
+      const endDate = new Date();
+      
+      const years = endDate.getFullYear() - startDate.getFullYear();
+      const months = endDate.getMonth() - startDate.getMonth();
+      const totalMonths = years * 12 + months;
+      
+      if (totalMonths >= 12) {
+        const calculatedYears = Math.floor(totalMonths / 12);
+        const calculatedMonths = totalMonths % 12;
+        if (calculatedMonths === 0) {
+          return calculatedYears === 1 ? '1 Year' : `${calculatedYears} Years`;
+        }
+        const yearDecimal = (calculatedYears + calculatedMonths / 12).toFixed(1);
+        return `${yearDecimal} Year${calculatedYears > 1 ? 's' : ''}`;
+      }
+      return `${totalMonths} Month${totalMonths > 1 ? 's' : ''}`;
+    }
+    return 'Ongoing';
+  }
+  
+  // Handle "Month-Year to Month-Year" format
+  const parts = durationStr.split(/[-–—to]/i).map(s => s.trim());
+  if (parts.length >= 2) {
+    const startMatch = parts[0].match(/(\w+)-(\d{4})/i);
+    const endMatch = parts[1].match(/(\w+)-(\d{4})/i);
+    
+    if (startMatch && endMatch) {
+      const startMonth = parseMonth(startMatch[1]);
+      const startYear = parseInt(startMatch[2]);
+      const endMonth = parseMonth(endMatch[1]);
+      const endYear = parseInt(endMatch[2]);
+      
+      const startDate = new Date(startYear, startMonth, 1);
+      const endDate = new Date(endYear, endMonth, 1);
+      
+      const years = endDate.getFullYear() - startDate.getFullYear();
+      const months = endDate.getMonth() - startDate.getMonth();
+      const totalMonths = years * 12 + months;
+      
+      if (totalMonths >= 12) {
+        const calculatedYears = Math.floor(totalMonths / 12);
+        const calculatedMonths = totalMonths % 12;
+        if (calculatedMonths === 0) {
+          return calculatedYears === 1 ? '1 Year' : `${calculatedYears} Years`;
+        }
+        // Format as "X.Y Year(s)" for partial years
+        const yearDecimal = (calculatedYears + calculatedMonths / 12).toFixed(1);
+        return `${yearDecimal} Year${calculatedYears > 1 ? 's' : ''}`;
+      }
+      return `${totalMonths} Month${totalMonths > 1 ? 's' : ''}`;
+    }
+  }
+  
+  return 'N/A';
+};
+
 function Experience() {
   const experiences = [
     {
       company: 'IQVIA',
       position: 'Senior Software Developer',
-      duration: 'Jul 2022 - Present',
-      years: '3.3 years'
+      duration: 'Jul 2022 - Present'
     },
     {
       company: 'Mindtree Limited',
       position: 'Module Lead',
-      duration: 'Dec 2019 - Jul 2022',
-      years: '2.5 years'
+      duration: 'Dec 2019 - Jul 2022'
     },
     {
       company: 'STP Investment Services',
       position: 'Software Developer',
-      duration: 'Sep 2017 - Dec 2019',
-      years: '2 years'
+      duration: 'Sep 2017 - Dec 2019'
     },
     {
       company: 'Winprotech IT Solutions',
       position: 'Software Developer',
-      duration: 'Aug 2016 - Sep 2017',
-      years: '1 year'
+      duration: 'Aug 2016 - Sep 2017'
     },
     {
       company: 'TCS Limited Bangalore',
       position: 'Software Trainee',
-      duration: 'Apr 2015 - Aug 2017',
-      years: '1.5 years'
+      duration: 'Apr 2015 - Aug 2016'
     }
   ];
+
+  // Calculate years for each experience and total
+  const experiencesWithYears = experiences.map(exp => ({
+    ...exp,
+    durationData: calculateDuration(exp.duration)
+  }));
+
+  const totalYears = experiencesWithYears.reduce((sum, exp) => sum + exp.durationData.years, 0);
+  const totalYearsDisplay = totalYears >= 1 
+    ? `${totalYears.toFixed(1)}+ Years` 
+    : `${(totalYears * 12).toFixed(0)}+ Months`;
 
   return (
     <Box component="section" className="experience">
@@ -71,12 +227,12 @@ function Experience() {
               color="primary" 
               sx={{ fontWeight: 'bold' }}
             >
-              9.5+ Years
+              {totalYearsDisplay}
             </Typography>
           </Box>
         </Paper>
         <Grid container spacing={3}>
-          {experiences.map((exp, index) => (
+          {experiencesWithYears.map((exp, index) => (
             <Grid item xs={12} key={index}>
               <Card elevation={2}>
                 <CardContent>
@@ -90,7 +246,7 @@ function Experience() {
                         {exp.company}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        {exp.duration} • {exp.years}
+                        {exp.duration} • {exp.durationData.display}
                       </Typography>
                     </Box>
                   </Box>
@@ -117,7 +273,6 @@ function Projects() {
       teamSize: 4,
       type: 'Website',
       role: 'Senior Software Developer',
-      projectDuration: '1 Year',
       technologies: ['Node.JS', 'React.JS']
     },
     {
@@ -131,7 +286,6 @@ function Projects() {
       teamSize: 5,
       type: 'Website',
       role: 'Senior Software Developer',
-      projectDuration: '6 Months',
       technologies: ['MERN']
     },
     {
@@ -145,7 +299,6 @@ function Projects() {
       teamSize: 3,
       type: 'Website',
       role: 'Senior Software Developer',
-      projectDuration: '1 Year',
       technologies: ['Knouckout.JS', '.Net MVC']
     },
     {
@@ -160,7 +313,6 @@ function Projects() {
       teamSize: 5,
       type: 'Website',
       role: 'Module Lead',
-      projectDuration: '3 Year',
       technologies: ['ASP.Net MVC', 'MS-SQL']
     },
     {
@@ -174,7 +326,6 @@ function Projects() {
       teamSize: 9,
       type: 'Website',
       role: 'Developer',
-      projectDuration: '2.5 Year',
       technologies: ['ASP.Net MVC', 'MS-SQL Server']
     },
     {
@@ -188,7 +339,6 @@ function Projects() {
       teamSize: 15,
       type: 'Website',
       role: 'Developer',
-      projectDuration: '1.5 Year',
       technologies: ['ASP.Net MVC', 'MS-SQL Server']
     },
     {
@@ -202,10 +352,15 @@ function Projects() {
       teamSize: 15,
       type: 'Website',
       role: 'Developer',
-      projectDuration: '1.5 Year',
       technologies: ['ASP.Net MVC', 'MS-SQL Server']
     }
   ];
+
+  // Calculate project duration for each project
+  const projectsWithDuration = projects.map(project => ({
+    ...project,
+    projectDuration: calculateProjectDuration(project.duration)
+  }));
 
   return (
     <Box component="section" className="projects">
@@ -214,7 +369,7 @@ function Projects() {
           Projects
         </Typography>
         <Grid container spacing={3}>
-          {projects.map((project, index) => (
+          {projectsWithDuration.map((project, index) => (
             <Grid item xs={12} key={index}>
               <Card elevation={3}>
                 <CardContent>
