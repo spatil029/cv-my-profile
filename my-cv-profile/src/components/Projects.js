@@ -245,7 +245,7 @@ function Projects() {
   
 
   return (
-    <Box sx={{ height: '100%', m: 0, p: 0 }}>
+    <Box className="projects" sx={{ height: '100%', m: 0, p: 0 }}>
       <audio ref={audioRef} />
       <Box sx={{ 
         py: 1.5,

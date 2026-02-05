@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Box, IconButton, ThemeProvider } from '@mui/material';
+import { Box, IconButton, ThemeProvider, Fab } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Header from './components/Header';
 import AppRoutes from './routes/AppRoutes';
 import theme from './theme'; // Import the custom theme
@@ -89,6 +91,7 @@ function SEOWrapper() {
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDarkBackground, setIsDarkBackground] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -100,12 +103,36 @@ function App() {
     document.body.style.overflow = 'auto';
   };
 
+  const toggleBackground = () => {
+    setIsDarkBackground(!isDarkBackground);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <ScrollToTop />
         <SEOWrapper />
-        <Box className="app-container">
+        <Box className={`app-container ${isDarkBackground ? 'dark-background' : 'light-background'}`}>
+          {/* Background Toggle Button */}
+          <Fab
+            onClick={toggleBackground}
+            size="small"
+            sx={{
+              position: 'fixed',
+              top: '10px',
+              right: '10px',
+              zIndex: 1200,
+              backgroundColor: isDarkBackground ? '#333' : '#fff',
+              color: isDarkBackground ? '#fff' : '#333',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+              '&:hover': {
+                backgroundColor: isDarkBackground ? '#555' : '#f5f5f5',
+              }
+            }}
+          >
+            {isDarkBackground ? <Brightness7Icon /> : <Brightness4Icon />}
+          </Fab>
+
           {/* Mobile Menu Button */}
           <IconButton
             className="mobile-menu-button"
@@ -149,7 +176,7 @@ function App() {
             className={`sidebar ${isMobileMenuOpen ? 'open' : ''}`}
             sx={{
               width: '280px',
-              backgroundColor: '#f0f0f0',
+              backgroundColor: isDarkBackground ? '#1a1a1a' : '#f0f0f0',
               position: 'fixed',
               height: '100vh',
               overflowY: 'hidden',
@@ -175,14 +202,15 @@ function App() {
               marginLeft: { xs: 0, md: '280px' },
               transition: 'margin-left 0.3s ease',
               minHeight: '100vh',
-              backgroundColor: '#fff',
+              backgroundColor: isDarkBackground ? '#0a0a0a' : '#fff',
+              color: isDarkBackground ? '#fff' : '#000',
               overflowY: 'auto',
               '@media (max-width: 768px)': {
                 marginTop: '60px'
               },
               // Add these styles for Firefox compatibility
               scrollbarWidth: 'thin',
-              scrollbarColor: '#1976d2 transparent',
+              scrollbarColor: isDarkBackground ? '#666 transparent' : '#1976d2 transparent',
               '&::-webkit-scrollbar-track': {
                 margin: '80px 0'
               }

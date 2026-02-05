@@ -162,7 +162,7 @@ function Experience() {
     {
       company: 'IQVIA',
       position: 'Senior Software Developer',
-      duration: 'Jul 2022 - Present'
+      duration: 'Jul 2022 - Jan 2026'
     },
     {
       company: 'Mindtree Limited',

@@ -366,3 +366,232 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #1565c0;
 }
+
+/* Background Themes */
+.light-background {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.dark-background {
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1a1a2e 100%);
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+/* Dark theme overrides for components */
+.dark-background .sidebar {
+  background-color: #1a1a1a !important;
+  border-right: 1px solid #333;
+}
+
+.dark-background section {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #333;
+}
+
+.dark-background .skill-item {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+.dark-background .header {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.dark-background .experience-item,
+.dark-background .education-item {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #333;
+}
+
+.dark-background .social-links a {
+  color: #4fc3f7;
+}
+
+.dark-background .social-links a:hover {
+  color: #29b6f6;
+}
+
+/* Dark theme navigation overrides */
+.dark-background .nav-link {
+  color: #e0e0e0;
+}
+
+.dark-background .nav-link:hover {
+  color: #4fc3f7;
+  background-color: rgba(79, 195, 247, 0.1);
+}
+
+.dark-background .nav-link.active {
+  color: #4fc3f7;
+  background-color: rgba(79, 195, 247, 0.15);
+}
+
+.dark-background .nav-link.active svg {
+  color: #4fc3f7;
+}
+
+/* Dark theme MUI navigation overrides */
+.dark-background .MuiListItem-root.nav-link {
+  color: #e0e0e0;
+}
+
+.dark-background .MuiListItem-root.nav-link.active {
+  background-color: #4fc3f7;
+  color: #ffffff;
+}
+
+.dark-background .MuiListItem-root.nav-link:hover {
+  background-color: rgba(79, 195, 247, 0.1);
+  color: #4fc3f7;
+}
+
+/* Dark theme Skills component overrides */
+.dark-background .MuiTypography-root {
+  color: #ffffff !important;
+}
+
+.dark-background .skill-name {
+  color: #ffffff !important;
+}
+
+.dark-background .skill-level {
+  color: #e0e0e0 !important;
+}
+
+/* Dark theme About and Projects page overrides */
+.dark-background .about h2,
+.dark-background .about h3,
+.dark-background .about h4,
+.dark-background .about h5,
+.dark-background .about h6 {
+  color: #e1bee7 !important; /* Light purple */
+}
+
+.dark-background .about .MuiTypography-body1,
+.dark-background .about .MuiTypography-body2 {
+  color: #f3e5f5 !important; /* Very light purple-white mix */
+}
+
+.dark-background .about .MuiListItemText-primary {
+  color: #ce93d8 !important; /* Medium purple */
+}
+
+.dark-background .about .MuiListItemText-secondary {
+  color: #e1bee7 !important; /* Light purple */
+}
+
+.dark-background .projects h1,
+.dark-background .projects h2,
+.dark-background .projects h3,
+.dark-background .projects h4,
+.dark-background .projects h5,
+.dark-background .projects h6 {
+  color: #e1bee7 !important; /* Light purple */
+}
+
+.dark-background .projects .MuiTypography-body1,
+.dark-background .projects .MuiTypography-body2 {
+  color: #f3e5f5 !important; /* Very light purple-white mix */
+}
+
+.dark-background .projects .MuiTypography-subtitle1 {
+  color: #ba68c8 !important; /* Medium purple */
+}
+
+.dark-background .projects .MuiChip-root {
+  color: #e1bee7 !important;
+  border-color: #ba68c8 !important;
+}
+
+/* Dark theme Projects component background and border overrides */
+.dark-background .projects .MuiBox-root {
+  border-color: #333 !important;
+}
+
+.dark-background .projects .MuiBox-root[style*="background-color"] {
+  background-color: #1e1e1e !important;
+}
+
+.dark-background .projects .MuiBox-root:hover {
+  background-color: rgba(186, 104, 200, 0.1) !important;
+}
+
+/* Dark theme Skills component overrides */
+.dark-background .skills h1,
+.dark-background .skills h2,
+.dark-background .skills h3,
+.dark-background .skills h4,
+.dark-background .skills h5,
+.dark-background .skills h6 {
+  color: #e1bee7 !important; /* Light purple */
+}
+
+.dark-background .skills .MuiTypography-body1,
+.dark-background .skills .MuiTypography-body2 {
+  color: #f3e5f5 !important; /* Very light purple-white mix */
+}
+
+.dark-background .skills .MuiBox-root {
+  border-color: #333 !important;
+}
+
+.dark-background .skills .MuiBox-root[style*="background-color"] {
+  background-color: #1e1e1e !important;
+}
+
+/* Dark theme comprehensive text color overrides */
+.dark-background .MuiTypography-root {
+  color: #f3e5f5 !important; /* Very light purple-white mix */
+}
+
+.dark-background h1,
+.dark-background h2,
+.dark-background h3,
+.dark-background h4,
+.dark-background h5,
+.dark-background h6 {
+  color: #e1bee7 !important; /* Light purple */
+}
+
+.dark-background .MuiTypography-subtitle1,
+.dark-background .MuiTypography-subtitle2 {
+  color: #ce93d8 !important; /* Medium purple */
+}
+
+.dark-background .MuiTypography-body1,
+.dark-background .MuiTypography-body2 {
+  color: #f3e5f5 !important; /* Very light purple-white mix */
+}
+
+.dark-background .MuiTypography-caption {
+  color: #e1bee7 !important; /* Light purple */
+}
+
+/* Specific component overrides for icons and special elements */
+.dark-background .MuiIcon-root,
+.dark-background .MuiSvgIcon-root {
+  color: #ba68c8 !important; /* Medium purple for icons */
+}
+
+.dark-background .MuiChip-root {
+  color: #e1bee7 !important;
+  border-color: #ba68c8 !important;
+  background-color: rgba(186, 104, 200, 0.1) !important;
+}
+
+/* Dark theme background overrides for all components */
+.dark-background .MuiPaper-root,
+.dark-background .MuiCard-root,
+.dark-background .MuiBox-root[style*="background-color"] {
+  background-color: #1e1e1e !important;
+  border-color: #333 !important;
+}
+
+.dark-background .MuiDivider-root {
+  border-color: #333 !important;
+}
