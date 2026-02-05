@@ -156,6 +156,14 @@ function Projects() {
           audio: 'path/to/your/audio/file.mp3'
         },
         {
+          name: 'One Key',
+          duration: 'Currently working from April-2024',
+          description: 'HCO and HCP data validation and reporting application.',
+          teamSize: 3,
+          role: 'Senior Software Developer',
+          technologies: ['React', 'ASP.Net Core', 'SQL Server']
+        },
+        {
           name: 'HealthLink',
           duration: 'Aug-2023 to Mar-2024',
           description: "Application designed to help you manage the child's treatment of achondroplasia on vosoritide.",

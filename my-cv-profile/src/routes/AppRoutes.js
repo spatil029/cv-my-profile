@@ -7,6 +7,7 @@ import Projects from '../components/Projects';
 import Education from '../components/Education';
 import Skills from '../components/Skills';
 import Contact from '../components/Contact';
+import ProjectsSkillsHierarchy from '../components/ProjectsSkillsHierarchy';
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
         <Route path="/" element={<About />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/career-journey" element={<ProjectsSkillsHierarchy />} />
         <Route path="/education" element={<Education />} />
         <Route path="/skills" element={<Skills />} />
         <Route path="/contact" element={<Contact />} />

@@ -20,6 +20,7 @@ function Header({ onMenuItemClick }) {
     { text: 'About', path: '/', icon: <HomeIcon sx={{ fontSize: 20 }} /> },
     { text: 'Experience', path: '/experience', icon: <WorkIcon sx={{ fontSize: 20 }} /> },
     { text: 'Projects', path: '/projects', icon: <CodeIcon sx={{ fontSize: 20 }} /> },
+    { text: 'Career Journey', path: '/career-journey', icon: <CodeIcon sx={{ fontSize: 20 }} /> },
     { text: 'Education', path: '/education', icon: <SchoolIcon sx={{ fontSize: 20 }} /> },
     { text: 'Skills', path: '/skills', icon: <BuildIcon sx={{ fontSize: 20 }} /> },
     { text: 'Contact', path: '/contact', icon: <ContactMailIcon sx={{ fontSize: 20 }} /> },
@@ -209,7 +210,7 @@ function Header({ onMenuItemClick }) {
           fontSize: '0.75rem'
         }}
       >
-        © 2025 Sahadev Patil
+        © 2026 Sahadev Patil
       </Typography>
 
       {/* Snackbar for feedback */}

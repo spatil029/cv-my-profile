@@ -1,0 +1,318 @@
+/* Custom styles for ProjectsSkillsHierarchy */
+
+/* Hide all checkbox elements completely */
+.rct-checkbox {
+  display: none !important;
+}
+
+.rct-option input[type="checkbox"] {
+  display: none !important;
+}
+
+input[type="checkbox"] {
+  display: none !important;
+}
+
+/* Main tree styling */
+.rct-option {
+  padding: 10px 8px;
+  margin: 2px 0;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.rct-option:hover {
+  background-color: rgba(25, 118, 210, 0.08);
+  border-left-color: #1976d2;
+  padding-left: 12px;
+}
+
+/* Label styling with larger fonts */
+.rct-option label {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-size: 1.05rem;
+  color: #333;
+}
+
+.rct-option label:hover {
+  color: #1976d2;
+}
+
+/* Icon styling */
+.rct-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  color: #1976d2;
+}
+
+/* Expand/collapse icon styling */
+.rct-option > label > .rct-icon-expand-close,
+.rct-option > label > .rct-icon-expand-open {
+  margin-right: 8px;
+  font-size: 1.4rem;
+  color: #1976d2;
+}
+
+/* Company level styling */
+.rct-tree > .rct-option > label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1976d2;
+}
+
+.rct-tree > .rct-option:hover > label {
+  color: #0d47a1;
+  font-size: 1.28rem;
+}
+
+/* Project level styling */
+.rct-tree > .rct-option > .rct-option > label {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #333;
+  margin-left: 4px;
+}
+
+.rct-tree > .rct-option > .rct-option:hover > label {
+  color: #1976d2;
+}
+
+/* Technology level styling */
+.rct-tree > .rct-option > .rct-option > .rct-option > label {
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #555;
+  margin-left: 8px;
+}
+
+.rct-tree > .rct-option > .rct-option > .rct-option:hover > label {
+  color: #1976d2;
+}
+
+/* Nested item indentation and styling */
+.rct-option > .rct-option {
+  border-radius: 4px;
+  border-left: 2px solid #e0e0e0;
+  padding-left: 12px;
+  margin-left: 8px;
+}
+
+.dark-background .rct-option > .rct-option {
+  border-left-color: #333;
+}
+
+.rct-option > .rct-option:hover {
+  border-left-color: #1976d2;
+  background-color: rgba(25, 118, 210, 0.06);
+}
+
+/* Dark theme overrides - ALL WHITE TEXT */
+.dark-background .rct-option {
+  color: #ffffff !important;
+}
+
+.dark-background .rct-option:hover {
+  background-color: rgba(186, 104, 200, 0.1);
+  border-left-color: #ba68c8;
+}
+
+.dark-background .rct-option label {
+  color: #ffffff !important;
+  font-size: 1.05rem !important;
+}
+
+.dark-background .rct-option label:hover {
+  color: #ba68c8 !important;
+}
+
+.dark-background .rct-option span {
+  color: #ffffff !important;
+}
+
+.dark-background .rct-option div {
+  color: #ffffff !important;
+}
+
+/* Dark theme - Company level (Medium Purple) */
+.dark-background .rct-tree > .rct-option > label {
+  color: #ce93d8 !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+}
+
+.dark-background .rct-tree > .rct-option:hover > label {
+  color: #ba68c8 !important;
+}
+
+/* Dark theme - Project level (WHITE) */
+.dark-background .rct-tree > .rct-option > .rct-option > label {
+  color: #ffffff !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+}
+
+.dark-background .rct-tree > .rct-option > .rct-option > label span {
+  color: #ffffff !important;
+}
+
+.dark-background .rct-tree > .rct-option > .rct-option:hover > label {
+  color: #ba68c8 !important;
+}
+
+/* Dark theme - Technology level (WHITE) */
+.dark-background .rct-tree > .rct-option > .rct-option > .rct-option > label {
+  color: #ffffff !important;
+  font-size: 1.08rem !important;
+  font-weight: 500 !important;
+}
+
+.dark-background .rct-tree > .rct-option > .rct-option > .rct-option > label span {
+  color: #ffffff !important;
+}
+
+.dark-background .rct-tree > .rct-option > .rct-option > .rct-option:hover > label {
+  color: #ba68c8 !important;
+}
+
+/* Dark theme arrow icons (Medium purple) */
+.dark-background .rct-option > label > .rct-icon-expand-close,
+.dark-background .rct-option > label > .rct-icon-expand-open {
+  color: #ba68c8 !important;
+}
+
+.dark-background .MuiSvgIcon-root {
+  color: #ba68c8 !important;
+}
+
+/* Dark theme - Nested items border and background */
+.dark-background .rct-option > .rct-option {
+  border-left-color: #333 !important;
+}
+
+.dark-background .rct-option > .rct-option:hover {
+  border-left-color: #ba68c8 !important;
+}
+
+/* Skills display styling */
+.projects-skills-hierarchy .skills-section {
+  margin-top: 2rem;
+}
+
+.projects-skills-hierarchy .skill-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 4px;
+  padding: 8px 12px;
+  background-color: rgba(25, 118, 210, 0.1);
+  border: 1px solid #1976d2;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.projects-skills-hierarchy .skill-item:hover {
+  background-color: rgba(25, 118, 210, 0.2);
+  border-color: #1976d2;
+}
+
+.dark-background .projects-skills-hierarchy .skill-item {
+  background-color: rgba(186, 104, 200, 0.1);
+  border-color: #ba68c8;
+  color: #ffffff;
+}
+
+.dark-background .projects-skills-hierarchy .skill-item:hover {
+  background-color: rgba(186, 104, 200, 0.2);
+  border-color: #ba68c8;
+}
+
+/* Remove default checkbox styling completely */
+.rct-node {
+  padding: 0;
+}
+
+.rct-node input {
+  display: none !important;
+}
+
+/* Custom tree structure */
+.rct-tree {
+  padding: 8px 0;
+}
+
+/* Smooth expand/collapse transitions */
+.rct-option > .rct-option {
+  max-height: 1000px;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.rct-option.rct-option--collapsed > .rct-option {
+  max-height: 0;
+  opacity: 0;
+  display: none;
+}
+
+/* Icon styling for better visibility */
+svg {
+  transition: all 0.2s ease;
+}
+
+.rct-option:hover svg {
+  filter: brightness(1.2);
+}
+
+/* Arrow icon specific styling */
+.MuiSvgIcon-root {
+  display: inline !important;
+}
+
+/* Ensure no checkbox appears */
+[type="checkbox"] {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* CRITICAL: Force all text white in dark mode */
+.dark-background .rct-text,
+.dark-background .rct-option::before,
+.dark-background .rct-option::after {
+  color: #ffffff !important;
+}
+
+/* All descendants of dark mode tree must be white */
+.dark-background .rct-tree * {
+  color: inherit;
+}
+
+.dark-background .rct-option * {
+  color: #ffffff !important;
+}
+
+/* Specific catch-all for any text nodes */
+.dark-background .rct-node-label {
+  color: #ffffff !important;
+}
+
+.dark-background .projects-skills-hierarchy {
+  color: #ffffff;
+}
