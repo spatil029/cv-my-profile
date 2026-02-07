@@ -180,17 +180,22 @@ function ProjectsSkillsHierarchy() {
       children: company.projects.map((project, projectIdx) => ({
         value: `project-${companyIdx}-${projectIdx}`,
         label: (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.2rem' }}>
-            <CodeIcon sx={{ fontSize: '1.2rem' }} />
-            <div>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '1.2rem' }}>
+            <CodeIcon sx={{ fontSize: '1.2rem', flexShrink: 0, marginTop: '2px' }} />
+            <div style={{ flex: 1 }}>
               <div style={{ fontWeight: 500, marginBottom: '4px' }}>
                 {project.name}
               </div>
-              <div style={{ fontSize: '0.75rem', color: '#666', marginBottom: '4px', fontWeight: 'normal' }}>
+              <div style={{ fontSize: '0.75rem', color: '#666', marginBottom: '4px', fontWeight: 'normal', textAlign: 'justify' }}>
                 <span style={{ marginRight: '15px' }}>📅 {project.duration}</span>
                 <span style={{ marginRight: '15px' }}>👤 {project.role}</span>
                 <span>👥 Team: {project.teamSize}</span>
               </div>
+              {project.description && (
+                <div style={{ fontSize: '0.8rem', color: '#555', marginTop: '6px', textAlign: 'justify', lineHeight: '1.4' }}>
+                  {project.description}
+                </div>
+              )}
             </div>
           </div>
         ),
@@ -315,7 +320,11 @@ function ProjectsSkillsHierarchy() {
         py: 1.5,
         px: 2,
         borderBottom: '1px solid #eee',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        '.dark-background &': {
+          backgroundColor: '#1a1a2e',
+          borderBottom: '1px solid #ba68c8'
+        }
       }}>
         <Typography 
           variant="h6" 
@@ -323,7 +332,10 @@ function ProjectsSkillsHierarchy() {
           sx={{ 
             fontWeight: 'bold',
             color: '#2c3e50',
-            fontSize: '1.1rem'
+            fontSize: '1.1rem',
+            '.dark-background &': {
+              color: '#ffffff'
+            }
           }}
         >
           Career Journey

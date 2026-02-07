@@ -9,6 +9,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import BuildIcon from '@mui/icons-material/Build';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import DownloadIcon from '@mui/icons-material/Download';
+import TrendingUpIcon  from '@mui/icons-material/TrendingUp';
 
 function Header({ onMenuItemClick }) {
   const location = useLocation();
@@ -20,7 +21,7 @@ function Header({ onMenuItemClick }) {
     { text: 'About', path: '/', icon: <HomeIcon sx={{ fontSize: 20 }} /> },
     { text: 'Experience', path: '/experience', icon: <WorkIcon sx={{ fontSize: 20 }} /> },
     { text: 'Projects', path: '/projects', icon: <CodeIcon sx={{ fontSize: 20 }} /> },
-    { text: 'Career Journey', path: '/career-journey', icon: <CodeIcon sx={{ fontSize: 20 }} /> },
+    { text: 'Career Journey', path: '/career-journey', icon: <TrendingUpIcon  sx={{ fontSize: 20 }} /> },
     { text: 'Education', path: '/education', icon: <SchoolIcon sx={{ fontSize: 20 }} /> },
     { text: 'Skills', path: '/skills', icon: <BuildIcon sx={{ fontSize: 20 }} /> },
     { text: 'Contact', path: '/contact', icon: <ContactMailIcon sx={{ fontSize: 20 }} /> },
